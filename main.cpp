@@ -1,6 +1,10 @@
 #include <iostream>
+#include "MattBlocks.h"
+
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    auto *blocks = new MattBlocks;
+    blocks->run();
+
     return 0;
 }
