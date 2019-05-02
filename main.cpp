@@ -3,8 +3,7 @@
 
 
 int main() {
-    auto *blocks = new MattBlocks;
-    blocks->run();
+    (new MattBlocks)->run();
 
     return 0;
 }

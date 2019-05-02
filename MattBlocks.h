@@ -11,26 +11,32 @@
 using namespace std;
 
 typedef list<list<int>> Screen;
-typedef map<int, map<int, int>> Payout;
-typedef map<int, list<map<string, int>>> Positions;
-typedef map<int, list<list<map<string, int>>>> Blocks;
-
-
+typedef map<int, map<int, int>> SymbolsPayout;
+typedef map<string, int> Position;
+typedef map<int, list<Position>> SymbolsPositions;
+typedef list<Position> Block;
+typedef map<int, list<Block>> SymbolsBlocks;
 
 class MattBlocks {
 public:
     void run();
 
 private:
-    int symbol_payout(int symbol, int count, Payout payout);
+    int symbol_payout(int symbol, int count, SymbolsPayout payout);
 
     void display_screen(const Screen &screen);
 
-    void display_positions(const Positions &positions);
+    void display_positions(const SymbolsPositions &positions);
 
-    void display_blocks(const Blocks &blocks);
+    void display_blocks(const SymbolsBlocks &blocks);
 
-    Positions find_symbols_positions();
+    SymbolsPositions find_symbols_positions();
+
+    bool stacked(const Position &pos1, const Position &pos2);
+
+    list<Block> group_positions(const list<Position> &positions);
+
+    SymbolsBlocks find_symbols_blocks(const SymbolsPositions &symbolsPositions);
 };
 
 
