@@ -5,10 +5,11 @@
 #include <list>
 #include <map>
 #include <iostream>
+#include <strings.h>
 
 #include "MattBlocks.h"
 
-Screen SCREEN =
+const Screen SCREEN =
         {
                 {1, 1, 1, 4, 5, 6, 7},
                 {1, 2, 3, 4, 5, 6, 7},
@@ -18,9 +19,9 @@ Screen SCREEN =
                 {1, 2, 3, 4, 8, 8, 7}
         };
 
-int WILD = 2;
+const int WILD = 2;
 
-Payout PAYOUT =
+const Payout PAYOUT =
         {
                 {
                         1, {{2, 20}, {3, 30}}
@@ -86,14 +87,16 @@ void MattBlocks::display_screen(const Screen &screen) {
 }
 
 void MattBlocks::display_positions(const Positions &positions) {
-    cout << "****     Positions     ****";
+    cout << "****     Positions     ****" << endl;
 
     for (const auto &symbol : positions) {
         cout << " " << symbol.first << " : ";
         for (const auto &symbol_positions : symbol.second) {
+            cout << " { ";
             for (const auto &position : symbol_positions) {
-                cout << " " << position.first << " : " << position.second;
+                cout << " " << position.first << ":" << position.second << " ";
             }
+            cout << " } ";
         }
         cout << endl;
     }
@@ -106,35 +109,27 @@ Positions MattBlocks::find_symbols_positions() {
 
     for (const auto &symbol_payout : PAYOUT) {
         const int &symbol = symbol_payout.first;
-        list<list<pair<string, int>>> positions;
-        for (const auto &row : SCREEN) {
-            for (const auto &screen_symbol : row) {
-                if (screen_symbol == symbol || screen_symbol == WILD) {
+        list<map<string, int>> positions;
+
+        for (auto row = SCREEN.begin(); row != SCREEN.end(); ++row) {
+            int x = distance(SCREEN.begin(), row);
+            for (auto screen_symbol = row->begin(); screen_symbol != row->end(); ++screen_symbol) {
+                int y = distance(row->begin(), screen_symbol);
+                if ((*screen_symbol) == symbol) {
                     positions.push_back(
                             {
-                                    {"x", 1},
-                                    {"y", 1}
+                                    {"x", x},
+                                    {"y", y}
                             }
                     );
                 }
             }
         }
+
+        symbols_positions.insert({symbol, positions});
     }
 
     return symbols_positions;
-
-/*    for symbol in payout:
-    positions = []
-    for x, row in enumerate(screen):
-    for y, screen_symbol in enumerate(row):
-    if screen_symbol == symbol or screen_symbol == wild:
-    positions.append({'x': x, 'y': y})
-
-    if len(positions) > 0:
-    symbols_positions[symbol] = positions
-
-    return symbols_positions*/
-
 }
 
 void MattBlocks::display_blocks(const Blocks &blocks) {

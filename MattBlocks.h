@@ -12,8 +12,8 @@ using namespace std;
 
 typedef list<list<int>> Screen;
 typedef map<int, map<int, int>> Payout;
-typedef map<int, list<list<pair<string, int>>>> Positions;
-typedef map<int, list<list<pair<string, int>>>> Blocks;
+typedef map<int, list<map<string, int>>> Positions;
+typedef map<int, list<list<map<string, int>>>> Blocks;
 
 
 
