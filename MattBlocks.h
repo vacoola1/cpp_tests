@@ -10,9 +10,10 @@
 
 using namespace std;
 
+
 typedef list<list<int>> Screen;
 typedef map<int, map<int, int>> SymbolsPayout;
-typedef map<string, int> Position;
+typedef map<std::string, int> Position;
 typedef map<int, list<Position>> SymbolsPositions;
 typedef list<Position> Block;
 typedef map<int, list<Block>> SymbolsBlocks;

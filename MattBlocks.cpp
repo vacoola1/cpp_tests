@@ -5,7 +5,6 @@
 #include <list>
 #include <map>
 #include <iostream>
-#include <strings.h>
 
 #include "MattBlocks.h"
 
@@ -86,7 +85,7 @@ SymbolsPositions MattBlocks::find_symbols_positions() {
 
     for (const auto &symbol_payout : PAYOUT) {
         const int &symbol = symbol_payout.first;
-        list<map<string, int>> positions;
+        list<map<std::string, int>> positions;
 
         for (auto row = SCREEN.begin(); row != SCREEN.end(); ++row) {
             int x = distance(SCREEN.begin(), row);
