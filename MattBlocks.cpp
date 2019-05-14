@@ -195,9 +195,9 @@ void MattBlocks::display_blocks(const SymbolsBlocks &blocks) {
     cout << "****     Blocks     ****" << endl;
 
     for (const auto &block : blocks) {
-        cout << " " << block.first << " : " << endl;
+        cout << " " << block.first << endl;
         for (const auto &symbol_blocks : block.second) {
-            cout << "       [ ";
+            cout << " ( size: " << symbol_blocks.size() << " )       [ ";
             for (const auto &block_positions : symbol_blocks) {
                 cout << " { ";
                 for (const auto &position : block_positions) {
