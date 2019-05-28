@@ -60,7 +60,7 @@ void MattBlocks::run() {
 
     SymbolsBlocks blocks = find_symbols_blocks(positions);
 
-    display_blocks(blocks);
+    display_blocks_symple(blocks);
 
 }
 
@@ -203,6 +203,26 @@ void MattBlocks::display_blocks(const SymbolsBlocks &blocks) {
                 for (const auto &position : block_positions) {
                     cout << " " << position.first << ":" << position.second << " ";
                 }
+                cout << " } ";
+            }
+            cout << " ]" << endl;
+        }
+        cout << endl;
+    }
+}
+
+void MattBlocks::display_blocks_symple(const SymbolsBlocks &blocks) {
+    cout << "****     Blocks     ****" << endl;
+
+    for (const auto &block : blocks) {
+        cout << " " << block.first << endl;
+        for (const auto &symbol_blocks : block.second) {
+            cout << " ( size: " << symbol_blocks.size() << " )       [ ";
+            for (const auto &block_positions : symbol_blocks) {
+                int x = block_positions.find("x")->second;
+                int y = block_positions.find("y")->second;
+                cout << " { ";
+                cout << " " << x << ":" << y << " ";
                 cout << " } ";
             }
             cout << " ]" << endl;

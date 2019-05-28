@@ -31,6 +31,8 @@ private:
 
     void display_blocks(const SymbolsBlocks &blocks);
 
+    void display_blocks_symple(const SymbolsBlocks &blocks);
+
     SymbolsPositions find_symbols_positions();
 
     bool stacked(const Position &pos1, const Position &pos2);
